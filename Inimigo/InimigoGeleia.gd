@@ -1,39 +1,58 @@
-extends KinematicBody2D
+extends CharacterBody2D
 
-var enemy_scene_path = "res://Inimigo/Inimigo.tscn"
-export var velo_mov = 30.0
-var velocity = Vector2.ZERO
-var spawn_interval = 2.0
-var time_since_last_spawn = 0.0
-onready var player: Node = null
+@export_category("Objects")
+@export var texture: Sprite2D
+@export var animation: AnimationPlayer
+@export var mov_speed = 50
+@onready var player = get_tree().get_first_node_in_group("Player")
 
-func _ready():
-	player = get_tree().get_nodes_in_group("Player")[0]
-	spawn_enemy()
+var is_dead= false
+var hp = 10
+var damage = 5
 
-func _process(delta):
-	time_since_last_spawn += delta
-	if time_since_last_spawn >= spawn_interval:
-		generate_enemies()
-		time_since_last_spawn = 0.0
+func _physics_process(_delta : float):
+	
+	if is_dead:
+		return
 		
-func _physics_process(_delta):
-	if player:
-		var direction = player.global_position - global_position
-		velocity = direction.normalized() * velo_mov
-		move_and_slide(velocity)
+	_animation()
+	
+	var dir: Vector2 = global_position.direction_to(player.global_position)
+	var dist: float = global_position.distance_to(player.global_position)
+	
+	velocity = dir * mov_speed
+		
+	move_and_slide()
 
-func calculate_enemies_for_level(difficulty_level):
-	var base_enemies = 5
-	var extra_enemies = difficulty_level * 2
-	return base_enemies + extra_enemies
+func _animation():
+	
+	if velocity.x > 0:
+		texture.flip_h = false
+		
+	if velocity.x < 0:
+		texture.flip_h = true 
+		
+	if velocity != Vector2.ZERO:
+		animation.play("walk")
+		return
+		
+	animation.play("idle")
 
-func generate_enemies():
-	var enemies_to_spawn = calculate_enemies_for_level(2) 
-	for i in range(enemies_to_spawn):
-		spawn_enemy()
+func _on_area_attack_body_entered(body):
+	
+	if body.is_in_group("Player"):
+		body.hit(damage)
+		
+func hit(damage):
+	
+	hp -= damage
+	
+	if hp < 0:
+		
+		is_dead = true
+		animation.play("die")
+	queue_free()
 
-func spawn_enemy():
-	var enemy_instance = load(enemy_scene_path).instance()
-	get_parent().add_child(enemy_instance)
-	enemy_instance.global_position = global_position
+
+
+

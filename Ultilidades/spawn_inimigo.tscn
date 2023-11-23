@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://7qph0hhmf5ch"]
+
+[ext_resource type="Script" path="res://Ultilidades/spawn_inimigo.gd" id="1_i1gc3"]
+[ext_resource type="PackedScene" uid="uid://b1yr5y3k65kdf" path="res://Inimigo/Inimigo.tscn" id="2_440hb"]
+[ext_resource type="Script" path="res://Ultilidades/spawn.gd" id="3_csgsn"]
+
+[sub_resource type="Resource" id="Resource_ny1ya"]
+script = ExtResource("3_csgsn")
+time_start = 0
+time_end = 60
+enemy = ExtResource("2_440hb")
+enemy_num = 1
+enemy_delay = 1
+
+[node name="SpawnInimigo" type="Node2D"]
+script = ExtResource("1_i1gc3")
+spawn = Array[ExtResource("3_csgsn")]([SubResource("Resource_ny1ya")])
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
