@@ -1,7 +1,9 @@
-[gd_scene load_steps=41 format=3 uid="uid://c21vmjhy2qi0p"]
+[gd_scene load_steps=43 format=3 uid="uid://c21vmjhy2qi0p"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://rnsr3y5cewf8" path="res://Player/Assets/player.png" id="2_s38qp"]
+[ext_resource type="Texture2D" uid="uid://ctijy08880w64" path="res://sprite/healthbar.png" id="3_hy67u"]
+[ext_resource type="Texture2D" uid="uid://dr1vl1rup02l8" path="res://sprite/health.png" id="4_oh35m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m8s2m"]
 size = Vector2(12, 3)
@@ -389,6 +391,21 @@ tracks/5/keys = {
 "values": [Vector2(0, -12)]
 }
 
+[sub_resource type="Animation" id="Animation_rj2r1"]
+resource_name = "death"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [54, 55, 56]
+}
+
 [sub_resource type="Animation" id="Animation_3mhg8"]
 resource_name = "idle"
 length = 0.6
@@ -717,21 +734,6 @@ tracks/2/keys = {
 "values": [Vector2(-0.5, -17)]
 }
 
-[sub_resource type="Animation" id="Animation_rj2r1"]
-resource_name = "death"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Player:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [54, 55, 56]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0ksy7"]
 _data = {
 "RESET": SubResource("Animation_wek12"),
@@ -899,6 +901,44 @@ shape = SubResource("RectangleShape2D_lfdsa")
 disabled = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="GUIlayer" type="CanvasLayer" parent="."]
+
+[node name="GUI" type="Control" parent="GUIlayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HealthBar" type="TextureProgressBar" parent="GUIlayer/GUI"]
+self_modulate = Color(1, 1, 1, 0.266667)
+layout_mode = 0
+offset_left = 304.0
+offset_top = 150.0
+offset_right = 336.0
+offset_bottom = 158.0
+texture_over = ExtResource("3_hy67u")
+texture_progress = ExtResource("4_oh35m")
+
+[node name="Timer" type="Label" parent="GUIlayer"]
+offset_left = 280.0
+offset_top = 20.0
+offset_right = 360.0
+offset_bottom = 65.0
+theme_override_font_sizes/font_size = 30
+text = "00:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="KillCounter" type="Label" parent="GUIlayer"]
+offset_left = 561.0
+offset_top = 1.0
+offset_right = 641.0
+offset_bottom = 46.0
+text = "0
+"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="body_entered" from="AreaAttack" to="." method="_on_area_attack_body_entered"]

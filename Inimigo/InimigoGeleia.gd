@@ -6,10 +6,17 @@ extends CharacterBody2D
 @export var mov_speed = 50
 @onready var player = get_tree().get_first_node_in_group("Player")
 
-var is_dead= false
-var hp = 10
-var damage = 5
 
+var death = 0
+signal KillCounter(death)
+var is_dead= false
+var hp = 100
+var damage = 50
+
+func _ready():
+	
+	connect("KillCounter", Callable(player, "KillCounter"))
+	
 func _physics_process(_delta : float):
 	
 	if is_dead:
@@ -48,10 +55,14 @@ func hit(damage):
 	hp -= damage
 	
 	if hp < 0:
-		
+		death += 1
 		is_dead = true
 		animation.play("die")
+			
+#	var deaths = death
+	emit_signal("KillCounter",death)
 	queue_free()
+
 
 
 

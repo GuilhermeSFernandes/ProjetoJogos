@@ -4,12 +4,17 @@ extends Node2D
 @onready var player = get_tree().get_first_node_in_group("Player")
 
 var time = 0
+signal changetime(time)
 
-
-
+func _ready():
+	
+	connect("changetime", Callable(player,"timers"))
+	
 func _on_timer_timeout():
+	
 	time += 1
 	var enemy_spaws = spawn
+	
 	for i in enemy_spaws:
 			if time >= i.time_start and time <= i.time_end:
 				if i.spawn_delay_counter < i.enemy_delay:
@@ -23,7 +28,10 @@ func _on_timer_timeout():
 						enemy_spawn.global_position = get_random_position()
 						add_child(enemy_spawn)
 						counter += 1
+	emit_signal("changetime", time)
+	
 func get_random_position():
+	
 	var vpr = get_viewport_rect().size * randf_range(1.1,1.4)
 	var top_left = Vector2(player.global_position.x - vpr.x/2, player.global_position.y - vpr.y/2)
 	var top_right = Vector2(player.global_position.x + vpr.x/2, player.global_position.y - vpr.y/2)
