@@ -19,3 +19,4 @@ nefastos.
 Códigos e vídeos usados durante o desenvolvimento deste trabalho:
 * [Make a Vampire Survivors Clone in Godot 4](https://www.youtube.com/watch?v=abA7TF7z6W8&list=PLtosjGHWDab682nfZ1f6JSQ1cjap7Ieeb&ab_channel=Branno)
 * [Criando um rpg top/down na Godot 4.0](https://www.youtube.com/watch?v=BmJlBFUVBDo&list=PLFzAtSiFUbT-UZcEli_IlKFQdk3FEBMlq&ab_channel=DevBandeira)
+* [Tutorial GODOT 4.0 - Plataforma 2D]([https://www.youtube.com/watch?v=BmJlBFUVBDo&list=PLFzAtSiFUbT-UZcEli_IlKFQdk3FEBMlq&ab_channel=DevBandeira](https://www.youtube.com/playlist?list=PL-oJEh-N3A3SOPWuMuulbnJv0BFgvBnVG)https://www.youtube.com/playlist?list=PL-oJEh-N3A3SOPWuMuulbnJv0BFgvBnVG)
