@@ -9,7 +9,7 @@ extends CharacterBody2D
 
 var maxhp = 100
 var hp = 100
-var damage = 50
+var damage = 100
 var is_attack: bool = false
 var state_machine
 var vel_mov = 50.0
