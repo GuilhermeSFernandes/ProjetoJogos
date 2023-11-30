@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://vq0v1y6d83gi"]
+
+[ext_resource type="Script" path="res://Ultilidades/pause.gd" id="1_f8c6o"]
+
+[node name="pause" type="CanvasLayer"]
+process_mode = 3
+visible = false
+script = ExtResource("1_f8c6o")
+
+[node name="menu" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -33.0
+offset_right = 35.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="resume" type="Button" parent="menu"]
+layout_mode = 2
+text = "Resume"
+
+[node name="voltar_menu" type="Button" parent="menu"]
+layout_mode = 2
+text = "Menu Inicial"
+
+[node name="quit" type="Button" parent="menu"]
+layout_mode = 2
+text = "Sair"
+
+[connection signal="pressed" from="menu/resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="menu/voltar_menu" to="." method="_on_voltar_menu_pressed"]
+[connection signal="pressed" from="menu/quit" to="." method="_on_quit_pressed"]

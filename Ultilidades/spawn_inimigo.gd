@@ -5,6 +5,7 @@ extends Node2D
 
 var time = 0
 signal changetime(time)
+signal poweruptimer(time)
 
 func _ready():
 	
@@ -29,6 +30,7 @@ func _on_timer_timeout():
 						add_child(enemy_spawn)
 						counter += 1
 	emit_signal("changetime", time)
+	emit_signal("poweruptimer", time)
 	
 func get_random_position():
 	

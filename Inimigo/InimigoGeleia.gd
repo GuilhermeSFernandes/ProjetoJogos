@@ -11,7 +11,7 @@ var death = 0
 signal KillCounter(death)
 var is_dead= false
 var hp = 100
-var damage = 50
+var damage = 25
 
 func _ready():
 	
@@ -59,11 +59,6 @@ func hit(damage):
 		is_dead = true
 		animation.play("die")
 			
-#	var deaths = death
 	emit_signal("KillCounter",death)
-	queue_free()
-
-
-
 
 

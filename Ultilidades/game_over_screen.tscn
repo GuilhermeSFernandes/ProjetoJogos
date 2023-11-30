@@ -1,0 +1,65 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5xh7wcira12b"]
+
+[ext_resource type="Script" path="res://GameOverScreen.gd" id="1_asytj"]
+
+[node name="GameOverScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_asytj")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -69.0
+offset_top = -76.0
+offset_right = 69.0
+offset_bottom = -41.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 24
+text = "GAME OVER"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.461
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 48.04
+offset_right = -2.0
+offset_bottom = 104.0
+grow_vertical = 2
+
+[node name="restart" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "Recomeçar"
+
+[node name="sair" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Sair"
+
+[connection signal="pressed" from="VBoxContainer/restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="VBoxContainer/sair" to="." method="_on_sair_pressed"]

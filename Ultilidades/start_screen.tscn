@@ -1,0 +1,73 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcq63vbpdwitb"]
+
+[ext_resource type="Script" path="res://startScreen.gd" id="1_oulce"]
+
+[sub_resource type="Theme" id="Theme_l3hrl"]
+
+[node name="startScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_oulce")
+
+[node name="controls" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.5
+offset_top = -50.5
+offset_right = 41.5
+offset_bottom = 50.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="start" type="Button" parent="controls"]
+layout_mode = 2
+text = "Começar"
+
+[node name="Controls" type="Button" parent="controls"]
+layout_mode = 2
+text = "Controles"
+
+[node name="Creditos" type="Button" parent="controls"]
+layout_mode = 2
+text = "Créditos"
+
+[node name="Quit" type="Button" parent="controls"]
+layout_mode = 2
+text = "Sair"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 196.0
+offset_top = 59.0
+offset_right = 341.0
+offset_bottom = 103.0
+theme_override_font_sizes/normal_font_size = 30
+text = "The Last"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 5.0
+offset_top = 59.0
+offset_right = 136.0
+offset_bottom = 102.0
+grow_horizontal = 2
+theme = SubResource("Theme_l3hrl")
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 30
+text = "Survivor"
+
+[connection signal="pressed" from="controls/start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="controls/Controls" to="." method="_on_controls_pressed"]
+[connection signal="pressed" from="controls/Creditos" to="." method="_on_creditos_pressed"]
+[connection signal="pressed" from="controls/Quit" to="." method="_on_quit_pressed"]

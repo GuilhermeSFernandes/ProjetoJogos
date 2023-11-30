@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cmo8d7hx0mnqc" path="res://sprite/mystic_woods_free_2.1/sprites/tilesets/grass.png" id="1"]
 [ext_resource type="PackedScene" uid="uid://c21vmjhy2qi0p" path="res://Player/Player.tscn" id="2"]
-[ext_resource type="PackedScene" path="res://Inimigo/Inimigo.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://b1yr5y3k65kdf" path="res://Inimigo/Inimigo.tscn" id="3"]
 
 [node name="Mundo" type="Node2D"]
 

@@ -9,7 +9,7 @@ extends CharacterBody2D
 
 var maxhp = 100
 var hp = 100
-var damage = 10
+var damage = 50
 var is_attack: bool = false
 var state_machine
 var vel_mov = 50.0
@@ -17,6 +17,8 @@ var is_started = false
 var is_dead: bool = false
 var time = 0
 var kill = 0
+var is_fast = false
+
 
 func _ready():
 
@@ -94,7 +96,7 @@ func hit(damage):
 func die():
 	is_dead = true
 	state_machine.travel("death")
-	await get_tree().create_timer(2.0).timeout
+	get_tree().change_scene_to_file("res://Ultilidades/game_over_screen.tscn")
 
 func timers (argtime = 0):
 	
@@ -109,6 +111,11 @@ func timers (argtime = 0):
 
 func KillCounter(deaths):
 	
-	#kill += deaths
-	kill = kill + 1
+	kill += deaths
 	lblKillCounter.text = str(kill)
+	
+func boost():
+	
+	is_fast = true
+	vel_mov += 50
+	
